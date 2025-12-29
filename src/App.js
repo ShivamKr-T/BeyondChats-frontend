@@ -14,29 +14,27 @@ function App() {
       <h1>BeyondChats Articles</h1>
 
       {articles.map(article => (
-        <div
-          key={article._id}
-          style={{
-            border: "1px solid #ddd",
-            padding: "15px",
-            marginBottom: "15px",
-            borderRadius: "6px"
-          }}
-        >
-          <h2>{article.title}</h2>
+  <div key={article._id} style={{ border: "1px solid #ddd", padding: 20, marginBottom: 20 }}>
 
-          <span style={{
-            color: article.isUpdated ? "green" : "gray",
-            fontWeight: "bold"
-          }}>
-            {article.isUpdated ? "Updated" : "Original"}
-          </span>
+    <h2>{article.title}</h2>
 
-          <p style={{ marginTop: "10px" }}>
-            {article.content.slice(0, 200)}...
-          </p>
-        </div>
-      ))}
+    {/* ORIGINAL */}
+    <h4 style={{ color: "#555" }}>Original Version</h4>
+    <p>
+      {article.originalContent?.slice(0, 300)}...
+    </p>
+
+    {/* UPDATED */}
+    {article.isUpdated && (
+      <>
+        <h4 style={{ color: "green" }}>Updated Version</h4>
+        <p>
+          {article.updatedContent?.slice(0, 300)}...
+        </p>
+      </>
+    )}
+  </div>
+))}
     </div>
   );
 }
